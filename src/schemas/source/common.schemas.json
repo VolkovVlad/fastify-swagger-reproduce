@@ -1,0 +1,547 @@
+{
+  "$id": "common.schemas.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "ChatMessageAuthor": {
+      "properties": {
+        "name": {
+          "title": "name",
+          "type": "string"
+        },
+        "uuid": {
+          "title": "uuid",
+          "type": "string"
+        }
+      },
+      "title": "ChatMessageAuthor",
+      "type": "object"
+    },
+    "ChatMessageStatus": {
+      "enum": ["error", "pending", "read", "received", "sent"],
+      "title": "ChatMessageStatus",
+      "type": "string"
+    },
+    "ChatMessageType": {
+      "enum": ["accept", "error", "service", "user"],
+      "title": "ChatMessageType",
+      "type": "string"
+    },
+    "ChatTypes": {
+      "enum": ["drafts", "group", "personal"],
+      "title": "ChatTypes",
+      "type": "string"
+    },
+    "ClientSocketPayload": {},
+    "CommonAuthModel": {
+      "properties": {
+        "data": {
+          "$ref": "common.schemas.json#/definitions/CommonUserModel",
+          "title": "data"
+        },
+        "shouldUpdate": {
+          "title": "shouldUpdate",
+          "type": "boolean"
+        }
+      },
+      "title": "CommonAuthModel",
+      "type": "object"
+    },
+    "CommonContactModel": {
+      "properties": {
+        "avatar": {
+          "$ref": "common.schemas.json#/definitions/CommonUserAvatar"
+        },
+        "blocked": {
+          "title": "blocked",
+          "type": "boolean"
+        },
+        "canSendMessage": {
+          "title": "canSendMessage",
+          "type": "boolean"
+        },
+        "lastSeen": {
+          "description": "Enables basic storage and retrieval of dates and times.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "type": "string"
+        },
+        "nickname": {
+          "title": "nickname",
+          "type": "string"
+        },
+        "sessionId": {
+          "title": "sessionId",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "common.schemas.json#/definitions/Status",
+          "title": "status"
+        },
+        "usernameCanonical": {
+          "title": "usernameCanonical",
+          "type": "string"
+        },
+        "uuid": {
+          "title": "uuid",
+          "type": "string"
+        }
+      },
+      "title": "CommonContactModel",
+      "type": "object"
+    },
+    "CommonDialogModel": {
+      "properties": {
+        "active": {
+          "title": "active",
+          "type": "boolean"
+        },
+        "avatar": {
+          "$ref": "common.schemas.json#/definitions/CommonUserAvatar"
+        },
+        "chatAdmins": {
+          "items": {
+            "type": "string"
+          },
+          "title": "chatAdmins",
+          "type": "array"
+        },
+        "hidden": {
+          "title": "hidden",
+          "type": "boolean"
+        },
+        "lastMessage": {
+          "$ref": "common.schemas.json#/definitions/CommonMessageModel"
+        },
+        "locked": {
+          "title": "locked",
+          "type": "boolean"
+        },
+        "muted": {
+          "title": "muted",
+          "type": "boolean"
+        },
+        "theme": {
+          "title": "theme",
+          "type": "string"
+        },
+        "title": {
+          "title": "title",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "common.schemas.json#/definitions/ChatTypes",
+          "title": "type"
+        },
+        "unreadMessages": {
+          "title": "unreadMessages",
+          "type": "number"
+        },
+        "updatedAt": {
+          "description": "Enables basic storage and retrieval of dates and times.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "userIds": {
+          "items": {
+            "type": "string"
+          },
+          "title": "userIds",
+          "type": "array"
+        },
+        "usersPrint": {
+          "items": {
+            "type": "string"
+          },
+          "title": "usersPrint",
+          "type": "array"
+        },
+        "uuid": {
+          "title": "uuid",
+          "type": "string"
+        }
+      },
+      "title": "CommonDialogModel",
+      "type": "object"
+    },
+    "CommonFileModel": {
+      "properties": {
+        "createdAt": {
+          "description": "Enables basic storage and retrieval of dates and times.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "dimensions": {
+          "title": "dimensions",
+          "type": "string"
+        },
+        "duration": {
+          "title": "duration",
+          "type": "number"
+        },
+        "ext": {
+          "title": "ext",
+          "type": "string"
+        },
+        "isDownloaded": {
+          "title": "isDownloaded",
+          "type": "boolean"
+        },
+        "isUploaded": {
+          "title": "isUploaded",
+          "type": "boolean"
+        },
+        "mime": {
+          "title": "mime",
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "type": "string"
+        },
+        "peaks": {
+          "title": "peaks",
+          "type": "string"
+        },
+        "previewUrl": {
+          "title": "previewUrl",
+          "type": "string"
+        },
+        "serverId": {
+          "title": "serverId",
+          "type": "string"
+        },
+        "size": {
+          "title": "size",
+          "type": "number"
+        },
+        "updatedAt": {
+          "description": "Enables basic storage and retrieval of dates and times.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "url": {
+          "title": "url",
+          "type": "string"
+        },
+        "uuid": {
+          "title": "uuid",
+          "type": "string"
+        }
+      },
+      "title": "CommonFileModel",
+      "type": "object"
+    },
+    "CommonLocationModel": {
+      "properties": {
+        "latitude": {
+          "title": "latitude",
+          "type": "number"
+        },
+        "longitude": {
+          "title": "longitude",
+          "type": "number"
+        },
+        "name": {
+          "title": "name",
+          "type": "string"
+        },
+        "uuid": {
+          "title": "uuid",
+          "type": "string"
+        }
+      },
+      "title": "CommonLocationModel",
+      "type": "object",
+      "nullable": true
+    },
+    "CommonMessageModel": {
+      "properties": {
+        "attachments": {
+          "$ref": "common.schemas.json#/definitions/IMessageAttachment"
+        },
+        "author": {
+          "$ref": "common.schemas.json#/definitions/ChatMessageAuthor",
+          "title": "author"
+        },
+        "createdAt": {
+          "description": "Enables basic storage and retrieval of dates and times.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "dialogUuid": {
+          "title": "dialogUuid",
+          "type": "string"
+        },
+        "editable": {
+          "title": "editable",
+          "type": "boolean"
+        },
+        "edited": {
+          "title": "edited",
+          "type": "boolean"
+        },
+        "hashTag": {
+          "title": "hashTag",
+          "type": "string"
+        },
+        "isFavorite": {
+          "title": "isFavorite",
+          "type": "boolean"
+        },
+        "messageType": {
+          "$ref": "common.schemas.json#/definitions/ChatMessageType",
+          "title": "messageType"
+        },
+        "removedAt": {
+          "description": "Enables basic storage and retrieval of dates and times.",
+          "format": "date-time",
+          "type": "string",
+          "nullable": true
+        },
+        "status": {
+          "$ref": "common.schemas.json#/definitions/ChatMessageStatus",
+          "title": "status"
+        },
+        "subMessages": {
+          "items": {
+            "$ref": "common.schemas.json#/definitions/CommonSubMessageModel"
+          },
+          "title": "subMessages",
+          "type": "array"
+        },
+        "text": {
+          "title": "text",
+          "type": "string"
+        },
+        "updatedAt": {
+          "description": "Enables basic storage and retrieval of dates and times.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "uuid": {
+          "title": "uuid",
+          "type": "string"
+        }
+      },
+      "title": "CommonMessageModel",
+      "type": "object",
+      "nullable": true
+    },
+    "CommonSubMessageModel": {
+      "properties": {
+        "attachments": {
+          "$ref": "common.schemas.json#/definitions/IMessageAttachment"
+        },
+        "author": {
+          "$ref": "common.schemas.json#/definitions/ChatMessageAuthor",
+          "title": "author"
+        },
+        "dialogUuid": {
+          "title": "dialogUuid",
+          "type": "string"
+        },
+        "hashTag": {
+          "title": "hashTag",
+          "type": "string"
+        },
+        "subMessages": {
+          "items": {},
+          "title": "subMessages",
+          "type": "array"
+        },
+        "text": {
+          "title": "text",
+          "type": "string"
+        },
+        "uuid": {
+          "title": "uuid",
+          "type": "string"
+        }
+      },
+      "title": "CommonSubMessageModel",
+      "type": "object"
+    },
+    "CommonToDoModel": {
+      "properties": {
+        "date": {
+          "description": "Enables basic storage and retrieval of dates and times.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "isDone": {
+          "title": "isDone",
+          "type": "boolean"
+        },
+        "map": {
+          "$ref": "common.schemas.json#/definitions/CommonLocationModel"
+        },
+        "reminder": {
+          "description": "Enables basic storage and retrieval of dates and times.",
+          "format": "date-time",
+          "type": "string",
+          "nullable": true
+        },
+        "text": {
+          "title": "text",
+          "type": "string"
+        },
+        "users": {
+          "items": {
+            "type": "string"
+          },
+          "title": "users",
+          "type": "array"
+        },
+        "uuid": {
+          "title": "uuid",
+          "type": "string"
+        }
+      },
+      "title": "CommonToDoModel",
+      "type": "object",
+      "nullable": true
+    },
+    "CommonUserAvatar": {
+      "properties": {
+        "dimensions": {
+          "title": "dimensions",
+          "type": "string"
+        },
+        "url": {
+          "title": "url",
+          "type": "string"
+        },
+        "uuid": {
+          "title": "uuid",
+          "type": "string"
+        }
+      },
+      "title": "CommonUserAvatar",
+      "type": "object",
+      "nullable": true
+    },
+    "CommonUserModel": {
+      "properties": {
+        "avatar": {
+          "$ref": "common.schemas.json#/definitions/CommonUserAvatar"
+        },
+        "lastSeen": {
+          "description": "Enables basic storage and retrieval of dates and times.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "type": "string"
+        },
+        "nickname": {
+          "title": "nickname",
+          "type": "string"
+        },
+        "sessionId": {
+          "title": "sessionId",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "common.schemas.json#/definitions/Status",
+          "title": "status"
+        },
+        "usernameCanonical": {
+          "title": "usernameCanonical",
+          "type": "string"
+        },
+        "uuid": {
+          "title": "uuid",
+          "type": "string"
+        }
+      },
+      "title": "CommonUserModel",
+      "type": "object"
+    },
+    "DaysInWeek": {
+      "enum": [0, 1, 2, 3, 4, 5, 6],
+      "title": "DaysInWeek",
+      "type": "number"
+    },
+    "FileTypes": {
+      "enum": ["audio", "image", "text", "video"],
+      "type": "string"
+    },
+    "IMessageAttachment": {
+      "properties": {
+        "contacts": {
+          "items": {
+            "$ref": "common.schemas.json#/definitions/CommonUserModel"
+          },
+          "title": "contacts",
+          "type": "array"
+        },
+        "files": {
+          "items": {
+            "$ref": "common.schemas.json#/definitions/CommonFileModel"
+          },
+          "title": "files",
+          "type": "array"
+        },
+        "location": {
+          "items": {
+            "$ref": "common.schemas.json#/definitions/CommonLocationModel"
+          },
+          "title": "location",
+          "type": "array"
+        },
+        "todo": {
+          "$ref": "common.schemas.json#/definitions/CommonToDoModel"
+        }
+      },
+      "title": "IMessageAttachment",
+      "type": "object",
+      "nullable": true
+    },
+    "ReceiveActions": {
+      "enum": [
+        "[App.Contact] AddContact",
+        "[App.Contacts] Change",
+        "[Calls] Accept Call",
+        "[Calls] Decline Call",
+        "[Calls] Send Call",
+        "[Chat] Chat Add",
+        "[Chat] Message Change Status",
+        "[Chat] Message Delete ",
+        "[Chat] Message Receive",
+        "[Chat] Message Update",
+        "[Contacts] Change Status",
+        "[Error] Remote Error",
+        "[Files] Download",
+        "[Files] Upload"
+      ],
+      "type": "string"
+    },
+    "RemoteSocketPayload": {},
+    "SendActions": {
+      "enum": [
+        "[Calls] Accept Call",
+        "[Calls] Decline Call",
+        "[Calls] Send Call",
+        "[Chat] Delete Message",
+        "[Chat] Mark Message as Favorite",
+        "[Chat] Send Message Read",
+        "[Chat] Send Message Receive",
+        "[Chat] Send Typing",
+        "[Chat] Update Message",
+        "[Contacts] Subscribe Status",
+        "[Todo] Remove Todo",
+        "[Todo] Update Todo"
+      ],
+      "type": "string"
+    },
+    "Status": {
+      "enum": ["connection...", "offline", "online"],
+      "title": "Status",
+      "type": "string"
+    }
+  }
+}
